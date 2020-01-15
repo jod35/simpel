@@ -6,8 +6,9 @@ def index():
     return render_template('index.html')
 
 #create_an_account
-@app.route('/register')
+@app.route('/register',methods=['GET', 'POST'])
 def create_account():
+    
     return render_template('singup.html')
 
 #sign_in

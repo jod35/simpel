@@ -11,8 +11,10 @@
 <body>
     <div class="container">
         {% include 'includes/_navbar.html' %}
-         <div class="_login">
-            {% include 'includes/_login.html' %}
+         <div class="login">
+            <form action="{{url_for('sign_in_user')}}" method="post">
+                {% include 'includes/_login.html' %}
+            </form>
          </div>
         {% include 'includes/_footer.html' %}
     </div>
