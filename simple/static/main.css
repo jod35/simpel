@@ -46,4 +46,12 @@ body{
    
 }
 
-
+.login-form{
+    text-align: center;
+    padding: 20px;
+    width: 400px;
+    margin: auto;
+}
+.login{
+    padding: 20px;
+}

@@ -1,1 +1,22 @@
-{% extends 'layout.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simpel |Sign In To Your Account</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='main.css')}}">
+</head>
+<body>
+    <div class="container">
+        {% include 'includes/_navbar.html' %}
+         <div class="_login">
+            {% include 'includes/_login.html' %}
+         </div>
+        {% include 'includes/_footer.html' %}
+    </div>
+</body>
+</html>
+
+    
