@@ -2,6 +2,17 @@
 
 {% block body %}
     <div class="signup-form">
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}  
+            {% endif %}
+        {% endwith %}
+            
         <form action="{{url_for('create_account')}}" method="post">
             {% include 'includes/_signup.html' %}
         </form>

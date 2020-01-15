@@ -20,30 +20,24 @@ def create_account():
         confirm=request.form.get('confirm')
 
 
-        user_exists=User.query.filter_by(email=email).first()
-        if user_exists:
-            flash("The email {} has been used already".format(email))
-            return redirect('create_account')
+        new_user={
+            'name':name,
+            'email':email,
+            'gender':gender,
+            'location':location,
+            'password':generate_password_hash(passw_hash)
+        }
+        user=User(**new_user)
+        try:
+            db.session.add(user)
+            db.session.commit()
+            flash("Account for {} has beed created! ".format(name))
+            return redirect(url_for('create_account'))
+        except:
+            flash("Invalid Credentials! Try Again")
+            return redirect(url_for('create_account'))
+                
 
-        elif confirm != passw_hash:
-            flash("Passwords do not Match")
-            return redirect('create_account')
-        
-        else:
-            new_user={
-                'name':name,
-                'email':email,
-                'location':location,
-                'gender':gender,
-                'password':generate_password_hash(passw_hash)
-            }
-
-            try:
-                db.session.add(User(**new_user))
-                db.session.commit()
-                flash("Account for user {} has been created",format(name))
-                return redirect('create_account')
-            
     return render_template('singup.html')
 
 #sign_in
