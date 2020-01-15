@@ -1,5 +1,6 @@
 from . import app,db
 from flask import render_template,redirect,url_for,request,flash
+from flask_login import login_user,logout_user,current_user
 from .models import User
 from werkzeug.security import generate_password_hash,check_password_hash
 
@@ -41,6 +42,18 @@ def create_account():
     return render_template('singup.html')
 
 #sign_in
-@app.route('/login')
+@app.route('/login',methods=['GET', 'POST'])
 def sign_in_user():
+    email=request.form.get('email')
+    password=request.form.get('password')
+
+    user=User.query.filter_by(email=email).first()
+
+    if user and check_password_hash(user.password,password):
+        login_user(user)
+        return redirect(url_for('user_dashboard')) 
     return render_template('login.html')
+
+@app.route('/dashboard')
+def user_dashboard():
+    return render_template('dashboard.html')
