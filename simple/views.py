@@ -1,10 +1,14 @@
-from . import app,db
+from . import app,db,login_manager
 from flask import render_template,redirect,url_for,request,flash
-from flask_login import login_user,logout_user,current_user
+from flask_login import login_user,logout_user,current_user,login_required
 from .models import User
 from werkzeug.security import generate_password_hash,check_password_hash
 
 
+login_manager.login_view='sign_in_user'
+
+
+#the homepage
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -54,6 +58,14 @@ def sign_in_user():
         return redirect(url_for('user_dashboard')) 
     return render_template('login.html')
 
+#the user dashboard
 @app.route('/dashboard')
+@login_required
 def user_dashboard():
     return render_template('dashboard.html')
+
+#logout a user
+@app.route('/logout')
+def logout_a_user():
+    logout_user()
+    return redirect(url_for('sign_in_user'))
