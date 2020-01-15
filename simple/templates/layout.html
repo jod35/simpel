@@ -9,12 +9,14 @@
     <title>My Simple Blogging Application</title>
 </head>
 <body>
-   <div class="container">
+   <div class="">
     {% include 'includes/_navbar.html' %}
     
-    {% block body %}
+     <div class="main-body">
+        {% block body %}
         
-    {% endblock body %}
+        {% endblock body %}
+     </div>
 
    {% include 'includes/_footer.html' %}
    </div>

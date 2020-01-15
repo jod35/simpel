@@ -1,22 +1,25 @@
 body{
     background-color: lightgray;
 }
+.main-body{
+    padding: 20px;
+}
 .footer{
     display: flex;
     justify-content: space-between;
-    background-color: darkslategray;
-    color: dodgerblue;
+    background-color: dodgerblue;
+    color: white;
 
 }
 
-.footer li a{
+.footer  a{
     text-decoration: none;
     list-style-type: none;
+    color: white;
 }
 .right{
     padding: 20px;
 }
-
 
 
 .ul li a{
@@ -26,3 +29,21 @@ body{
 .left{
     padding: 20px;
 }
+.form-control{
+    width: 400px;
+}
+.signup-form{
+    background-color: rgba(255, 255, 255, 0.336);
+    padding: 20px;
+    color: dodgerblue;
+
+}
+.signup{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+    
+   
+}
+
+
