@@ -48,14 +48,19 @@ def create_account():
 #sign_in
 @app.route('/login',methods=['GET', 'POST'])
 def sign_in_user():
-    email=request.form.get('email')
-    password=request.form.get('password')
+    if request.method == 'POST':
+        email=request.form.get('email')
+        password=request.form.get('password')
 
-    user=User.query.filter_by(email=email).first()
+        user=User.query.filter_by(email=email).first()
 
-    if user and check_password_hash(user.password,password):
-        login_user(user)
-        return redirect(url_for('user_dashboard')) 
+        if not user:
+            flash('Invalid Login')
+        
+
+        if user and check_password_hash(user.password,password):
+            login_user(user)
+            return redirect(url_for('user_dashboard')) 
     return render_template('login.html')
 
 #the user dashboard
@@ -66,6 +71,7 @@ def user_dashboard():
 
 #logout a user
 @app.route('/logout')
+@login_required
 def logout_a_user():
     logout_user()
     return redirect(url_for('sign_in_user'))
